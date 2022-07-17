@@ -1,15 +1,13 @@
-package com.show.business.tecnica.transferobject;
+package com.show.business.tecnica.dto;
 
+import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
+@Builder
 public class Respuesta {
 	public static final String OK="OK";
 	public static final String ERROR="ERROR";
-	
-	
 	
 	String estado;
 	String mensaje;

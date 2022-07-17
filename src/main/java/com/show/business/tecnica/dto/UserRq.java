@@ -1,4 +1,4 @@
-package com.show.business.tecnica.transferobject;
+package com.show.business.tecnica.dto;
 
 public class UserRq {
 	private String user;

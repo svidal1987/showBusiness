@@ -5,44 +5,34 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.show.business.tecnica.JWTAuthorizationFilter;
+import com.show.business.tecnica.dto.Respuesta;
+import com.show.business.tecnica.dto.UserRs;
 import com.show.business.tecnica.model.Usuario;
 import com.show.business.tecnica.service.UsuarioServicio;
-import com.show.business.tecnica.transferobject.Respuesta;
-import com.show.business.tecnica.transferobject.UserRs;
 
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.SignatureAlgorithm;
-import io.jsonwebtoken.UnsupportedJwtException;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
-public class LogController {
+public class UserController {
 	
 
     @Autowired
     private UsuarioServicio usuarioServicio;
-    
-
-	
+    	
 	@PostMapping("login")
 	@CrossOrigin(origins = "*")
+	@Tag(name = "Autenticacion de Usuario/Portal")
 	public UserRs login(@RequestParam("user") String username, @RequestParam("password") String pwd) {
 
 		UserRs user = new UserRs();
@@ -73,12 +63,13 @@ public class LogController {
 		String secretKey = JWTAuthorizationFilter.SECRET;
 		List<GrantedAuthority> grantedAuthorities = AuthorityUtils
 				.commaSeparatedStringToAuthorityList(u.getRol().toString());
-		
+		u.setPassword("");
 		String token = Jwts
 				.builder()
 				.setId("softtekJWT")
 				.setSubject(u.getUsuario())
-				.claim("usuario", u.getUsuario())
+				.claim("usuarioId", u.getId())
+				.claim("usuarioNombre", u.getNombre())
 				.claim("authorities",
 						grantedAuthorities.stream()
 								.map(GrantedAuthority::getAuthority)

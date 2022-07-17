@@ -1,13 +1,13 @@
 package com.show.business.tecnica.model;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -15,21 +15,24 @@ import lombok.NonNull;
 @Data
 @NoArgsConstructor
 @Entity
-@Builder
-@AllArgsConstructor
-public class Usuario {
+public class Ticket {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	Long id;
+	@JsonIgnore
+	String nombreApellido;
+
+	@JsonIgnore
+	String mail;
+
+	@JsonIgnore
+	String dni;
+	@ManyToOne()
+
+	@JsonIgnore
+	Funcion funcion;
 	@NonNull
-	private String usuario;
+	Integer butaca;
 	@NonNull
-	private String nombre;
-	@NonNull
-	private String password;
-	
-	@Column(columnDefinition = "boolean default true")
-	private Boolean activo;
-	@NonNull
-	private Rol rol;
+	Double precio;
 }

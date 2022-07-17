@@ -91,7 +91,6 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
             String value = request.getHeader(key);
             map.put(key, value);
         }
-        System.out.println(map);
 		if (authenticationHeader == null || !authenticationHeader.startsWith(PREFIX))
 			return false;
 		return true;

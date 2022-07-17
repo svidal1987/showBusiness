@@ -1,21 +1,30 @@
 package com.show.business.tecnica;
 
+import java.util.concurrent.TimeUnit;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import com.github.benmanes.caffeine.cache.Caffeine;
+import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.cache.caffeine.CaffeineCacheManager;
+import org.springframework.cache.CacheManager;
 
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
 import io.swagger.v3.oas.annotations.info.Info;
 import io.swagger.v3.oas.annotations.security.SecurityScheme;
 
+@SuppressWarnings("deprecation")
 @SpringBootApplication
-@OpenAPIDefinition(info = @Info(title = "API", version = "0.0", description = "Aplicación API"))
+@EnableCaching
+@OpenAPIDefinition(info = @Info(title = "SHOW BUSINESS", version = "0.0", description = "Aplicación generada para realizar tecnica para Mercado Libre"))
 @SecurityScheme(
 	    name = "bearerAuth",
 	    type = SecuritySchemeType.HTTP,
@@ -43,4 +52,15 @@ public class TecnicaApplication {
 				.anyRequest().authenticated();
 		}
 	}
+	@Bean
+	public Caffeine caffeineConfig() {
+	    return Caffeine.newBuilder().expireAfterWrite(15, TimeUnit.SECONDS);
+	}
+    @Bean
+    public CacheManager cacheManager(Caffeine caffeine) {
+        CaffeineCacheManager caffeineCacheManager = new CaffeineCacheManager();
+        caffeineCacheManager.getCache("findAllFuncion");
+        caffeineCacheManager.setCaffeine(caffeine);
+        return caffeineCacheManager;
+    }
 }
