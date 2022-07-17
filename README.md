@@ -65,7 +65,7 @@ La implementación del cache se realizó de la mano de spring boot + cafeine, es
 ~~~
 
 #Otros comentarios
-En el código no se implementaros mapperes para la salida de las API, se utilizaron directamente las clases del modelo por lo cual solo se ocultaron las algunas variables mediante @JsonIgnore.
+En el código no se implementaron mappers para la salida de las API, se utilizaron directamente las clases del modelo por lo cual, solo se ocultaron  algunas variables mediante @JsonIgnore.
  
 
 # DER 
