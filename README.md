@@ -48,13 +48,13 @@ En particular, también se configuró un subdominio de serlino.com.ar "showbusin
 Para realizar las pruebas sobre las API desarrolladas se deja link de postman tanto para pruebas locales como en servidor AWS
 
 [https://www.getpostman.com/collections/ed77c8772d105d11aa3d](https://www.getpostman.com/collections/ed77c8772d105d11aa3d)
-#Documentación
+# Documentación
 Para una mejor comunicación con los portales se dejó implementada la documentación de la API mediante Swagger 3.0:
 [http://showbusiness.serlino.com.ar:8080/api/swagger-ui/index.html](http://showbusiness.serlino.com.ar:8080/api/swagger-ui/index.html)  
 
 También el json para generar el cliente:  
 [http://showbusiness.serlino.com.ar:8080/api/v3/api-docs](http://showbusiness.serlino.com.ar:8080/api/v3/api-docs)
-#Cache
+# Cache
 La implementación del cache se realizó de la mano de spring boot + cafeine, este cache se dejó habilitado durante 15seg. 
 
 ~~~
@@ -64,7 +64,7 @@ La implementación del cache se realizó de la mano de spring boot + cafeine, es
 	}
 ~~~
 
-#Otros comentarios
+# Otros comentarios
 En el código no se implementaron mappers para la salida de las API, se utilizaron directamente las clases del modelo por lo cual, solo se ocultaron  algunas variables mediante @JsonIgnore.
  
 
