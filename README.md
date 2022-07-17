@@ -25,3 +25,6 @@ En la implementacion se proponen endpints:
 -**Consulta de Funcion**: permite obtener las Dunciones dado un rango de fecha y precio, u otros parametros como el establecimiento, show o la misma funcion a visualizar.  
 -**Consulta de disponibilidad**: permite consulta la disponibilidad de una funcion.  
 -**Asignacion de ticket**: permite a los portales asignar el ticket a un cliente particular.  
+
+
+![Texto alternativo]([https://drive.google.com/file/d/1yMI8VaRaW-tZ7ywMnIPizpK1GUWmso2S/view?usp=sharing](https://drive.google.com/file/d/1yMI8VaRaW-tZ7ywMnIPizpK1GUWmso2S/view?usp=sharing))
